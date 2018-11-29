@@ -9,6 +9,7 @@ namespace Cfms.Basic.Interfaces.Entity
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IUpdateEntity<T> : IEnity<T>
+        where T : struct
     {
         /// <summary>
         /// 修改操作用户Id

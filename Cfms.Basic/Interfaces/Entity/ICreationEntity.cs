@@ -9,6 +9,7 @@ namespace Cfms.Basic.Interfaces.Entity
     /// </summary>
     /// <typeparam name="T">实体主键</typeparam>
     public interface ICreationEntity<T> : IEnity<T>
+        where T : struct
     {
         /// <summary>
         /// 创建用户Id

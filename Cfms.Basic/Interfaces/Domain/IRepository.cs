@@ -8,19 +8,21 @@ using System.Threading.Tasks;
 
 namespace Cfms.Basic.Interfaces.Domain
 {
-    public interface IRepository<TEntity, TPrimaryKey> where TEntity : IEnity<TPrimaryKey>
+    public interface IRepository<TEntity, TPrimaryKey> 
+        where TEntity : IEnity<TPrimaryKey> 
+        where TPrimaryKey : struct
     {
         /// <summary>
         /// 按指定条件查询存储库中的所有实体的数目
         /// </summary>
         /// <param name="predicate">条件表达式</param>
         /// <returns></returns>
-        Task<long> Count(Expression<Func<TEntity, bool>> predicate);
+        Task<int> Count(Expression<Func<TEntity, bool>> predicate);
         /// <summary>
         /// 查询存储库中所有实体的数目
         /// </summary>
         /// <returns></returns>
-        Task<long> Count();
+        Task<int> Count();
         /// <summary>
         /// 删除指定键值的数据
         /// </summary>

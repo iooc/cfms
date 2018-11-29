@@ -9,6 +9,7 @@ namespace Cfms.Basic.Interfaces.Entity
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IDeletionEntity<T> : IEnity<T>
+        where T: struct
     {
         /// <summary>
         /// 删除操作用户Id
