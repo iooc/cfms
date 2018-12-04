@@ -1,4 +1,5 @@
-﻿using Cfms.Basic.Interfaces.Application;
+﻿using AutoMapper;
+using Cfms.Basic.Interfaces.Application;
 using Cfms.Basic.Interfaces.Domain;
 using Cfms.Basic.Interfaces.Dto;
 using Cfms.Basic.Interfaces.Entity;
@@ -19,7 +20,7 @@ namespace Cfms.Basic.Application.Services
 
         public CrudAppService(IRepository<TEntity, TPrimaryKey> repository)
         {
-
+            Repository = repository;
         }
         public virtual Task<TEntityDto> Create(TCreateInput input)
         {
@@ -44,6 +45,16 @@ namespace Cfms.Basic.Application.Services
         public virtual Task<TEntityDto> Update(TUpdateInput input)
         {
             throw new NotImplementedException();
+        }
+
+        protected virtual TEntityDto MapToEntityDto(TEntity entity)
+        {
+            return Mapper.Map<TEntityDto>(entity);
+        }
+
+        protected virtual TEntity MapToEntity(TEntityDto dto)
+        {
+            return Mapper.Map<TEntity>(dto);
         }
     }
 }
