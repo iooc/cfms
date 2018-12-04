@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Cfms.Basic.EntityFrameworkCore
 {
-    public class CfmsDbContext: DbContext
+    public class CfmDbContext: DbContext
     {
     }
 }

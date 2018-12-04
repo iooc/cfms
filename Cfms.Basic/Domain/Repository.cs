@@ -19,10 +19,10 @@ namespace Cfms.Basic.Domain
         where TEntity : class, IEnity<TPrimaryKey>
         where TPrimaryKey : struct
     {
-        protected CfmsDbContext dbContext;
+        protected CfmDbContext dbContext;
         public RepositoryBase()
         {
-            dbContext = new CfmsDbContext();
+            dbContext = new CfmDbContext();
         }
         public virtual Task<int> Count(Expression<Func<TEntity, bool>> predicate)
         {

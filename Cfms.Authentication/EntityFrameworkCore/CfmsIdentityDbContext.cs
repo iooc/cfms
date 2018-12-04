@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Cfms.Authentication.EntityFrameworkCore
 {
-    public class CfmsIdentityDbContext<TTenant, TUser, TRole, TPrimaryKey> : IdentityDbContext<TUser,TRole, TPrimaryKey> 
+    public class CfmIdentityDbContext<TTenant, TUser, TRole, TPrimaryKey> : IdentityDbContext<TUser,TRole, TPrimaryKey> 
         where TUser : IdentityUser<TPrimaryKey>
         where TRole : IdentityRole<TPrimaryKey>
         where TPrimaryKey : IEquatable<TPrimaryKey>
