@@ -21,27 +21,27 @@ namespace Cfms.Basic.Application.Services
         {
 
         }
-        public Task<TEntityDto> Create(TCreateInput input)
+        public virtual Task<TEntityDto> Create(TCreateInput input)
         {
             throw new NotImplementedException();
         }
 
-        public Task Delete(TDeleteInput input)
+        public virtual Task Delete(TDeleteInput input)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TEntityDto> Get(TGetInput input)
+        public virtual Task<TEntityDto> Get(TGetInput input)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IPagedResultDto<TEntityDto, TPrimaryKey>> GetAll(TGetAllInput input)
+        public virtual Task<IPagedResultDto<TEntityDto, TPrimaryKey>> GetAll(TGetAllInput input)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TEntityDto> Update(TUpdateInput input)
+        public virtual Task<TEntityDto> Update(TUpdateInput input)
         {
             throw new NotImplementedException();
         }
