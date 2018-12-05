@@ -5,6 +5,9 @@ using AutoMapper;
 
 namespace Cfms.Basic.AutoMapper
 {
+    /// <summary>
+    /// 将类型和给定的类型参数进行双向映射
+    /// </summary>
     public class AutoMapAttribute : AutoMapAttributeBase
     {
         public AutoMapAttribute(Type targetTypes) : base(targetTypes)

@@ -10,7 +10,8 @@ namespace Cfms.Basic.Interfaces.Dto
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TPrimaryKey"></typeparam>
     public interface IPagedResultDto<T, TPrimaryKey> 
-        where T:IEntityDto<TPrimaryKey>
+        where T : IEntityDto<TPrimaryKey>
+        where TPrimaryKey : struct
     {
         /// <summary>
         /// 当前条件可查询结果总数
@@ -19,6 +20,6 @@ namespace Cfms.Basic.Interfaces.Dto
         /// <summary>
         /// 当前分页数据
         /// </summary>
-        IEntityDto<TPrimaryKey> Data { get; set; }
+        List<T> Data { get; set; }
     }
 }

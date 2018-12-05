@@ -20,6 +20,7 @@ namespace Cfms.Basic.Interfaces.Application
         <TEntityDto, TPrimaryKey, in TGetAllInput, in TCreateInput, in TUpdateInput, in TGetInput, in TDeleteInput>
         :IAppService
         where TEntityDto: IEntityDto<TPrimaryKey>
+        where TPrimaryKey : struct
     {
         /// <summary>
         /// 新增数据服务接口
