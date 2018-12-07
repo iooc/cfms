@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using Cfms.Basic.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace Cfms.Basic.Interfaces.Domain.Uow
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork: ITransientDependency
     {
         Task SaveChanges();
     }

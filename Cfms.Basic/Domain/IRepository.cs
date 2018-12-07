@@ -1,4 +1,5 @@
-﻿using Cfms.Basic.Interfaces.Entity;
+﻿using Cfms.Basic.DependencyInjection;
+using Cfms.Basic.Interfaces.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Cfms.Basic.Interfaces.Domain
 {
-    public interface IRepository<TEntity, TPrimaryKey> 
+    public interface IRepository<TEntity, TPrimaryKey> : ITransientDependency
         where TEntity : IEnity<TPrimaryKey> 
         where TPrimaryKey : struct
     {
