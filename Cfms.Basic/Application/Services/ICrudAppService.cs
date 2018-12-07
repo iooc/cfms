@@ -1,10 +1,7 @@
 ﻿using Cfms.Basic.Interfaces.Dto;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Cfms.Basic.Interfaces.Application
+namespace Cfms.Basic.Application.Services
 {
     /// <summary>
     /// 增删该查服务接口的声明

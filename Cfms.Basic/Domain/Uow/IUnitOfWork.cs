@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Cfms.Basic.Interfaces.Domain.Uow
 {
-    public interface IUnitOfWork: ITransientDependency
+    public interface IUnitOfWork
     {
         Task SaveChanges();
     }

@@ -7,9 +7,15 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cfms.Basic.Interfaces.Domain
+namespace Cfms.Basic.Domain
 {
-    public interface IRepository<TEntity, TPrimaryKey> : ITransientDependency
+    /// <summary>
+    /// 仓储服务的接口
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TPrimaryKey"></typeparam>
+    [Injectable(typeof(RepositoryBase<,>))]
+    public interface IRepository<TEntity, TPrimaryKey>
         where TEntity : IEnity<TPrimaryKey> 
         where TPrimaryKey : struct
     {
