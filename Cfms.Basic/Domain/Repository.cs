@@ -1,6 +1,7 @@
 ﻿using Cfms.Basic.EntityFrameworkCore;
 using Cfms.Basic.Interfaces.Domain;
 using Cfms.Basic.Interfaces.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace Cfms.Basic.Domain
         where TPrimaryKey : struct
     {
         protected CfmDbContext dbContext;
-        public RepositoryBase()
+        public RepositoryBase(DbContext _dbContext)
         {
-            dbContext = new CfmDbContext();
+            dbContext = _dbContext;
         }
         public virtual Task<int> Count(Expression<Func<TEntity, bool>> predicate)
         {
