@@ -20,7 +20,7 @@ namespace Cfms.Basic.Domain
         where TEntity : class, IEnity<TPrimaryKey>
         where TPrimaryKey : struct
     {
-        protected CfmDbContext dbContext;
+        protected DbContext dbContext;
         public RepositoryBase(DbContext _dbContext)
         {
             dbContext = _dbContext;
