@@ -8,6 +8,9 @@ namespace Cfms.Basic.Application.Services
 {
     public abstract class ApplicationService : IAppService
     {
+        /// <summary>
+        /// 用户登录标识
+        /// </summary>
         ICfmsSession CfmsSession { get; set; }
     }
 }

@@ -5,6 +5,9 @@ using System;
 
 namespace Cfms.Basic.DependencyInjection
 {
+    /// <summary>
+    /// 依赖注入帮助类
+    /// </summary>
     public static class DependencyHelper
     {
         /// <summary>
@@ -44,7 +47,7 @@ namespace Cfms.Basic.DependencyInjection
                                 break;
                         }
                     }
-                    // API 应用服务
+                    // API 应用服务的依赖注入
                     if (typeof(IAppService).IsAssignableFrom(type) &&
                         !type.IsAbstract && !type.IsInterface)
                     {

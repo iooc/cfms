@@ -8,8 +8,9 @@ using System.Text;
 namespace Cfms.Basic.DependencyInjection
 {
     /// <summary>
-    /// 通过对接口或类附加此特性，自动为特性声明的类型产生依赖注入
+    /// 通过对接口或类附加此特性，自动为特性声明的类型产生依赖注入.
     /// </summary>
+    /// <remarks>依赖优先级为 配置文件 > 类型声明 > 接口声明</remarks>
     [AttributeUsage(
         AttributeTargets.Interface | 
         AttributeTargets.Class, 
@@ -31,7 +32,7 @@ namespace Cfms.Basic.DependencyInjection
 
         private string ConfigName { get; set; }
         /// <summary>
-        /// 使用指定的基类或接口实现类型初始化依赖注入特性的新实例
+        /// 使用指定的基类或接口实现类型初始化依赖注入特性的新实例,默认生命周期为临时
         /// </summary>
         /// <param name="type">用于实现当前接口的类型</param>
         public InjectableAttribute(Type type)
@@ -40,7 +41,7 @@ namespace Cfms.Basic.DependencyInjection
             InstanceLifetime = ServiceLifetime.Transient;
         }
         /// <summary>
-        /// 初始化依赖注入特性的新实例
+        /// 初始化依赖注入特性的新实例,默认生命周期为临时
         /// </summary>
         /// <param name="configName">完全限定的配置节表达式</param>
         public InjectableAttribute(string configName)

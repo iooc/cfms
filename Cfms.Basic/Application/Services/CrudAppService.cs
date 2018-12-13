@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using Cfms.Basic.Application.Dto;
-using Cfms.Basic.Interfaces.Application;
-using Cfms.Basic.Interfaces.Domain;
+using Cfms.Basic.Domain;
 using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Dto;
 using Cfms.Basic.Interfaces.Entity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Cfms.Basic.Application.Services
