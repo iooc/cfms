@@ -26,24 +26,39 @@ namespace Cfms.Basic.DependencyInjection
                     // 注入特性
                     if (type.IsDefined(typeof(InjectableAttribute),false))
                     {
+                        // 获取此特性类的实例
                         var attri = type.GetCustomAttributes(typeof(InjectableAttribute), false)[0];
-                        var injectable = attri as InjectableAttribute;
-                        if (injectable.Implement == null)
+                        var inject = attri as InjectableAttribute;
+
+                        var serviceType = type;
+                        var implementationType = inject.Implement;
+                        // 接口声明最后
+                        // 实现类其次
+                        if (inject.Implement.IsAssignableFrom(type))
                         {
-                            injectable.Configuration = configuration;
-                            injectable.GenerateType(a);
+                            serviceType = inject.Implement;
+                            implementationType = type;
+                        }
+                        // 配置模式优先
+                        if (inject.Implement == null)
+                        {
+                            inject.Configuration = configuration;
+                            inject.GenerateType(a);
+
+                            implementationType = inject.Implement;
                         }
 
-                        switch (injectable.InstanceLifetime)
+                        switch (inject.InstanceLifetime)
                         {
-                            case ServiceLifetime.Transient:
-                                services.AddTransient(type, injectable.Implement);
-                                break;
                             case ServiceLifetime.Scoped:
-                                services.AddScoped(type, injectable.Implement);
+                                services.AddScoped(serviceType, implementationType);
                                 break;
                             case ServiceLifetime.Singleton:
-                                services.AddSingleton(type, injectable.Implement);
+                                services.AddSingleton(serviceType, implementationType);
+                                break;
+                            case ServiceLifetime.Transient:
+                            default:
+                                services.AddTransient(serviceType, implementationType);
                                 break;
                         }
                     }

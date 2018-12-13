@@ -18,7 +18,7 @@ namespace Cfms.Basic.DependencyInjection
     public class InjectableAttribute : Attribute
     {
         /// <summary>
-        /// 用于实现接口的类型
+        /// 用于实现接口的类型或反向关系(反向关系优先)
         /// </summary>
         internal protected Type Implement { get; protected set; }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Cfms.Basic.DependencyInjection
         /// <summary>
         /// 初始化依赖注入特性的新实例,默认生命周期为临时
         /// </summary>
-        /// <param name="configName">完全限定的配置节表达式</param>
+        /// <param name="configName">完全限定的配置节表达式,表示基类的实现</param>
         public InjectableAttribute(string configName)
         {
             ConfigName = configName;
@@ -62,7 +62,7 @@ namespace Cfms.Basic.DependencyInjection
         /// <summary>
         /// 初始化依赖注入特性的新实例
         /// </summary>
-        /// <param name="configName">完全限定的配置节表达式</param>
+        /// <param name="configName">完全限定的配置节表达式,表示基类的实现<</param>
         /// <param name="lifetime">接口实现对象生命周期</param>
         public InjectableAttribute(string configName, ServiceLifetime lifetime)
         {
@@ -80,7 +80,7 @@ namespace Cfms.Basic.DependencyInjection
 
             var typeName = Configuration.GetValue<string>(ConfigName);
             if (string.IsNullOrWhiteSpace(typeName))
-                throw new Exception("无效的配置节名称");
+                throw new Exception("无效的配置节名称或表达式");
 
             Implement = assembly.GetType(typeName);
         }
