@@ -11,7 +11,7 @@ namespace Cfms.Basic.DependencyInjection
     public static class DependencyHelper
     {
         /// <summary>
-        /// 调用此函数实现 Cfms 特性风格自动依赖注入
+        /// 调用此函数启用 Cfms 特性风格自动依赖注入
         /// </summary>
         public static IServiceCollection AddCfmsAttibuteInjection(
             this IServiceCollection services, 
