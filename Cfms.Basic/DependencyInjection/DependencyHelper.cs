@@ -1,4 +1,5 @@
-﻿using Cfms.Basic.Application.Services;
+﻿using Cfms.Basic.Application;
+using Cfms.Basic.Application.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -70,6 +71,21 @@ namespace Cfms.Basic.DependencyInjection
                     }
                 }
             }
+            return services;
+        }
+        /// <summary>
+        /// 添加 Cfms 领域驱动服务
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddCfmService(
+            this IServiceCollection services)
+        {
+            // 领域服务名缓存服务
+            services.AddSingleton<ApiNamesService>();
+            // 激活中间件工厂
+            services.AddTransient(provider => new AppServiceMiddleware(provider));
+
             return services;
         }
     }
