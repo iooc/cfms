@@ -1,4 +1,5 @@
 ﻿using Cfms.Basic.Interfaces.Dto;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Cfms.Basic.Application.Services
@@ -24,30 +25,35 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpPost]
         Task<TEntityDto> Create(TCreateInput input);
         /// <summary>
         /// 删除数据服务接口
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpDelete]
         Task Delete(TDeleteInput input);
         /// <summary>
         /// 获取单条数据的服务接口
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpGet]
         Task<TEntityDto> Get(TGetInput input);
         /// <summary>
         /// 获取指定条件的所有数据服务接口
         /// </summary>
         /// <param name="input">查询条件传输对象</param>
         /// <returns></returns>
+        [HttpGet]
         Task<IPagedResultDto<TEntityDto, TPrimaryKey>> GetAll(TGetAllInput input);
         /// <summary>
         /// 修改数据的服务接口
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpPut]
         Task<TEntityDto> Update(TUpdateInput input);
     }
 }

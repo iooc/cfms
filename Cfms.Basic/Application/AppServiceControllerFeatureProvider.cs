@@ -8,27 +8,27 @@ using System.Text;
 
 namespace Cfms.Basic.Application
 {
-    public class AppServiceControllerFeatureProvider: ControllerFeatureProvider
+    /// <summary>
+    /// 通过向 AspNetCore 添加功能集的方式实现领域驱动服务
+    /// </summary>
+    public class AppServiceControllerFeatureProvider : ControllerFeatureProvider
     {
+        /// <summary>
+        /// 判断给定类型是否可转换为控制器
+        /// </summary>
+        /// <param name="typeInfo"></param>
+        /// <returns></returns>
         protected override bool IsController(TypeInfo typeInfo)
         {
             var type = typeInfo.AsType();
-
-            if (!typeof(IAppService).IsAssignableFrom(type) ||
-                !typeInfo.IsPublic || typeInfo.IsAbstract || typeInfo.IsGenericType)
+            
+            if (typeof(IAppService).IsAssignableFrom(type))
             {
-                return false;
+                if (!typeInfo.IsPublic || typeInfo.IsAbstract || typeInfo.IsGenericType)
+                    return false;
+                return true;
             }
 
-            //var remoteServiceAttr = ReflectionHelper.GetSingleAttributeOrDefault<RemoteServiceAttribute>(typeInfo);
-
-            //if (remoteServiceAttr != null && !remoteServiceAttr.IsEnabledFor(type))
-            //{
-            //    return false;
-            //}
-
-            //var configuration = _iocResolver.Resolve<AbpAspNetCoreConfiguration>().ControllerAssemblySettings.GetSettingOrNull(type);
-            //return configuration != null && configuration.TypePredicate(type);
             return base.IsController(typeInfo);
         }
     }

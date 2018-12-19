@@ -74,7 +74,7 @@ namespace Cfms.Basic.DependencyInjection
             return services;
         }
         /// <summary>
-        /// 添加 Cfms 领域驱动服务
+        /// 以中间件的方式添加 Cfms 领域驱动服务
         /// </summary>
         /// <param name="services"></param>
         /// <returns></returns>
