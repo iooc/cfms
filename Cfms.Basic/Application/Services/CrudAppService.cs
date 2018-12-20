@@ -4,6 +4,7 @@ using Cfms.Basic.Domain;
 using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Dto;
 using Cfms.Basic.Interfaces.Entity;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,6 +21,7 @@ namespace Cfms.Basic.Application.Services
     /// <typeparam name="TUpdateInput">更新条件类型</typeparam>
     /// <typeparam name="TGetInput">单条查询条件类型</typeparam>
     /// <typeparam name="TDeleteInput">删除查询条件类型</typeparam>
+    [Route("api/services/[controller]")]
     public abstract class CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TCreateInput, TUpdateInput, TGetInput, TDeleteInput>
         : ApplicationService, ICrudAppService<TEntityDto, TPrimaryKey, TGetAllInput, TCreateInput, TUpdateInput, TGetInput, TDeleteInput>
         where TEntity : IEnity<TPrimaryKey>

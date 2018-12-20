@@ -1,5 +1,6 @@
 ﻿using Cfms.Basic.Application;
 using Cfms.Basic.Application.Services;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -81,10 +82,22 @@ namespace Cfms.Basic.DependencyInjection
         public static IServiceCollection AddCfmService(
             this IServiceCollection services)
         {
-            // 领域服务名缓存服务
-            services.AddSingleton<ApiNamesService>();
-            // 激活中间件工厂
-            services.AddTransient(provider => new AppServiceMiddleware(provider));
+            //// 领域服务名缓存服务
+            //services.AddSingleton<ApiNamesService>();
+            //// 激活中间件工厂
+            //services.AddTransient(provider => new AppServiceMiddleware(provider));
+            // 控制器功能提供程序模式
+            services.AddMvcCore(options =>
+            {
+                // 使用领域服务约定路由
+                var routeToken = new RouteTokenTransformerConvention(new AppServiceParameterTransformer());
+                options.Conventions.Add(routeToken);
+            })
+            .ConfigureApplicationPartManager(manager =>
+            {
+                var provider = new AppServiceControllerFeatureProvider();
+                manager.FeatureProviders.Add(provider);
+            });
 
             return services;
         }

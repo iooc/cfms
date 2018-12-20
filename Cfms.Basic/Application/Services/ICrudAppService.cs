@@ -25,6 +25,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [Route("create")]
         [HttpPost]
         Task<TEntityDto> Create(TCreateInput input);
         /// <summary>
@@ -32,6 +33,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [Route("delete")]
         [HttpDelete]
         Task Delete(TDeleteInput input);
         /// <summary>
@@ -39,6 +41,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [Route("get")]
         [HttpGet]
         Task<TEntityDto> Get(TGetInput input);
         /// <summary>
@@ -46,6 +49,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input">查询条件传输对象</param>
         /// <returns></returns>
+        [Route("getall")]
         [HttpGet]
         Task<IPagedResultDto<TEntityDto, TPrimaryKey>> GetAll(TGetAllInput input);
         /// <summary>
@@ -53,6 +57,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [Route("update")]
         [HttpPut]
         Task<TEntityDto> Update(TUpdateInput input);
     }
