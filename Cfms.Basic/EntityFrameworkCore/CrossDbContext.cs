@@ -6,7 +6,7 @@ namespace Cfms.Basic.EntityFrameworkCore
     /// <summary>
     /// Cfms 框架数据访问上下文
     /// </summary>
-    public class CfmDbContext: DbContext, ICfmDbContext
+    public class CrossDbContext: DbContext, ICrossDbContext
     {
     }
 }

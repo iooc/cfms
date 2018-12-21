@@ -12,8 +12,8 @@ namespace Cfms.Authentication.EntityFrameworkCore
     /// <typeparam name="TUser">用户实体</typeparam>
     /// <typeparam name="TRole">角色实体</typeparam>
     /// <typeparam name="TPrimaryKey">授权数据的主键类型</typeparam>
-    public abstract class CfmIdentityDbContext<TTenant, TUser, TRole, TPrimaryKey> 
-        : IdentityDbContext<TUser,TRole, TPrimaryKey> , ICfmDbContext
+    public abstract class CrossIdentityDbContext<TTenant, TUser, TRole, TPrimaryKey> 
+        : IdentityDbContext<TUser,TRole, TPrimaryKey> , ICrossDbContext
         where TUser : IdentityUser<TPrimaryKey>
         where TRole : IdentityRole<TPrimaryKey>
         where TPrimaryKey : IEquatable<TPrimaryKey>
