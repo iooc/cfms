@@ -1,6 +1,7 @@
 ﻿using Cfms.Basic.Interfaces.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Cfms.Authentication.EntityFrameworkCore
@@ -18,5 +19,14 @@ namespace Cfms.Authentication.EntityFrameworkCore
         where TRole : IdentityRole<TPrimaryKey>
         where TPrimaryKey : IEquatable<TPrimaryKey>
     {
+        /// <summary>
+        /// 使用给定的数据访问上下文可选参数初始化标示数据库的基类
+        /// </summary>
+        /// <param name="options">可选参数</param>
+        public CrossIdentityDbContext(DbContextOptions options)
+            : base(options)
+        {
+
+        }
     }
 }

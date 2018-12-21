@@ -8,8 +8,8 @@ using System.Text;
 
 namespace Cfms.Authentication.Core
 {
-    [Table("Sys_User")]
-    public class CfmsUser : IdentityUser<long>, IEnity<long>
+    [Table("Sys_UserInfo")]
+    public class CrossUserInfo : IdentityUser<long>, IEnity<long>
     {
     }
 }
