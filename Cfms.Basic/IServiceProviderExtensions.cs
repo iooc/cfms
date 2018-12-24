@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Cfms.Basic
 {
+    /// <summary>
+    /// IServiceProvider 扩展函数类
+    /// </summary>
     public static class IServiceProviderExtensions
     {
         /// <summary>
