@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cfms.Basic", "Cfms.Basic\Cf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cfms.Authentication", "Cfms.Authentication\Cfms.Authentication.csproj", "{40A3B8BB-56E7-40D9-9D41-C520EF4F39B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cfms.IndentityServer", "Cfms.IndentityServer\Cfms.IndentityServer.csproj", "{16F2E8C5-0B5D-4E77-A56F-D9B8D38C9290}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{40A3B8BB-56E7-40D9-9D41-C520EF4F39B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40A3B8BB-56E7-40D9-9D41-C520EF4F39B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40A3B8BB-56E7-40D9-9D41-C520EF4F39B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F2E8C5-0B5D-4E77-A56F-D9B8D38C9290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F2E8C5-0B5D-4E77-A56F-D9B8D38C9290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F2E8C5-0B5D-4E77-A56F-D9B8D38C9290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F2E8C5-0B5D-4E77-A56F-D9B8D38C9290}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

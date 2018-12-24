@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Cfms.Basic.Interfaces.Entity
 {
+    /// <summary>
+    /// 启用可选租户数据
+    /// </summary>
     public interface IMayTenant
     {
         /// <summary>

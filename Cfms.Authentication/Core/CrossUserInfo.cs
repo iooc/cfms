@@ -9,7 +9,11 @@ using System.Text;
 namespace Cfms.Authentication.Core
 {
     [Table("Sys_UserInfo")]
-    public class CrossUserInfo : IdentityUser<long>, IEnity<long>
+    public class CrossUserInfo : IdentityUser<long>, IEnity<long>, IMayTenant
     {
+        /// <summary>
+        /// 租户 Id
+        /// </summary>
+        public int? TenantId { get; set; }
     }
 }
