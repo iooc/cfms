@@ -1,12 +1,10 @@
 ﻿using Cfms.IndentityServer.EntityFramworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace Cfms.IndentityServer
 {
@@ -23,35 +21,24 @@ namespace Cfms.IndentityServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<IdentDbContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<UserInfo, RoleInfo>()
                 .AddEntityFrameworkStores<IdentDbContext>()
                 .AddDefaultTokenProviders();
 
-            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            //var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
-            services.AddIdentityServer()
+            services.AddMvc();
+
+            services
+                .AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 // 配置信息存储位置
-                .AddConfigurationStore(options => {
-                    options.ConfigureDbContext = builder =>
-                    {
-                        builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                            sql => sql.MigrationsAssembly(migrationsAssembly));
-                    };
-                })
+                .AddConfigurationStore<IdentDbContext>()
                 // 操作信息存储位置
-                .AddOperationalStore(options =>
-                {
-                    options.ConfigureDbContext = builder =>
-                        builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                            sql => sql.MigrationsAssembly(migrationsAssembly));
-
-                    // 启用自动 token 清理. 这是可选的.
-                    options.EnableTokenCleanup = true;
-                    options.TokenCleanupInterval = 30;
-                });
+                .AddOperationalStore<IdentDbContext>()
+                .AddAspNetIdentity<UserInfo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,11 +48,14 @@ namespace Cfms.IndentityServer
             {
                 app.UseDeveloperExceptionPage();
             }
-                app.UseIdentityServer();
+            app.UseStaticFiles();
+            app.UseIdentityServer();
 
-            app.Run(async (context) =>
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
