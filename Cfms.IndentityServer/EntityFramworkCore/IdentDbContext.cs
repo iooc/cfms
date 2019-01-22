@@ -10,16 +10,14 @@ using System.Threading.Tasks;
 
 namespace Cfms.IndentityServer.EntityFramworkCore
 {
-    public class IdentDbContext : IdentityDbContext<UserInfo, RoleInfo, Guid>, 
-        IConfigurationDbContext, IPersistedGrantDbContext
+    public class IdentDbContext<TContext> : IdentityDbContext<UserInfo, RoleInfo, Guid>
+        where TContext: DbContext
     {
         public IdentDbContext(DbContextOptions options) :base(options){ }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.Entity<DeviceFlowCodes>().HasBaseType<DeviceFlow>();
         }
 
         public Task<int> SaveChangesAsync()
@@ -30,10 +28,18 @@ namespace Cfms.IndentityServer.EntityFramworkCore
         }
 
         public DbSet<Tenant> Tenants { get; set; }
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<IdentityResource> IdentityResources { get; set; }
-        public DbSet<ApiResource> ApiResources { get; set; }
-        public DbSet<PersistedGrant> PersistedGrants { get; set; }
-        public DbSet<DeviceFlowCodes> DeviceFlowCodes { get; set; }
+        //public DbSet<Client> Clients { get; set; }
+        //public DbSet<IdentityResource> IdentityResources { get; set; }
+        //public DbSet<ApiResource> ApiResources { get; set; }
+        //public DbSet<PersistedGrant> PersistedGrants { get; set; }
+        //public DbSet<DeviceFlowCodes> DeviceFlowCodes { get; set; }
+    }
+
+    public class IdentDbContext : IdentDbContext<IdentDbContext>
+
+    {
+        public IdentDbContext(DbContextOptions<IdentDbContext> options) : base(options)
+        {
+        }
     }
 }
