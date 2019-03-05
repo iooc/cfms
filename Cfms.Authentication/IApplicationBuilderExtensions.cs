@@ -13,7 +13,7 @@ namespace Cfms.Authentication
         /// <param name="app"></param>
         public static void UseCfmsAuthentication(this IApplicationBuilder app)
         {
-            app.UseCookieAuthentication
+            //app.UseCookieAuthentication()
         }
     }
 }
