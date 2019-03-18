@@ -160,7 +160,7 @@ namespace Cfms.Basic.Application.Services
             }
 
             //Try to limit query result if available
-            var limitedInput = input as ILimitedResultRequest;
+            ILimitedResultRequest limitedInput = input as ILimitedResultRequest;
             if (limitedInput != null)
             {
                 return query.Take(limitedInput.Limit);
