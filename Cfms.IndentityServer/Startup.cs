@@ -30,11 +30,10 @@ namespace Cfms.IndentityServer
             services.AddIdentity<UserInfo, RoleInfo>()
                 .AddEntityFrameworkStores<IdentDbContext>()
                 .AddDefaultTokenProviders();
-
-            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-
             services.AddMvc();
 
+
+            var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services
                 .AddIdentityServer()
                 .AddDeveloperSigningCredential()
