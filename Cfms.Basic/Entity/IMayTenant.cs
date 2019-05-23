@@ -12,6 +12,6 @@ namespace Cfms.Basic.Interfaces.Entity
         /// <summary>
         /// 租户Id
         /// </summary>
-        int? TenantId { get; set; }
+        Guid? TenantId { get; set; }
     }
 }

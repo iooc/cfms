@@ -1,4 +1,5 @@
-﻿using Cfms.Basic.Interfaces.EntityFrameworkCore;
+﻿using Cfms.Authentication.Core;
+using Cfms.Basic.Interfaces.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ namespace Cfms.Authentication.EntityFrameworkCore
         where TUser : IdentityUser<TPrimaryKey>
         where TRole : IdentityRole<TPrimaryKey>
         where TPrimaryKey : IEquatable<TPrimaryKey>
+        where TTenant:Tenant
     {
         /// <summary>
         /// 使用给定的数据访问上下文可选参数初始化标示数据库的基类
@@ -28,5 +30,9 @@ namespace Cfms.Authentication.EntityFrameworkCore
         {
 
         }
+
+        public DbSet<TTenant> Tenant { get; set; }
+
+        public DbSet<CrossUserInfo> UserInfos { get; set; }
     }
 }
