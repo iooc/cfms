@@ -30,6 +30,7 @@ namespace Cfms.Basic.Application.Services
         where TUpdateInput : IEntityDto<TPrimaryKey>
         where TGetInput : IEntityDto<TPrimaryKey>
         where TDeleteInput : IEntityDto<TPrimaryKey>
+        where TGetAllInput: IPagedResultRequest
     {
         /// <summary>
         /// 数据仓储
@@ -195,6 +196,26 @@ namespace Cfms.Basic.Application.Services
 
             //No sorting
             return query;
+        }
+    }
+    /// <summary>
+    /// 增删改查应用服务的基类(合并增删改条件模型)
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TEntityDto"></typeparam>
+    /// <typeparam name="TPrimaryKey"></typeparam>
+    /// <typeparam name="TGetAllInput"></typeparam>
+    /// <typeparam name="TInputDto"></typeparam>
+    public abstract class CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TInputDto>
+        : CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TGetAllInput, TInputDto, TInputDto, TInputDto>
+        where TEntity : IEnity<TPrimaryKey>
+        where TEntityDto : IEntityDto<TPrimaryKey>
+        where TPrimaryKey : struct
+        where TInputDto : IEntityDto<TPrimaryKey>
+        where TGetAllInput : IPagedResultRequest
+    {
+        public CrudAppService(IRepository<TEntity, TPrimaryKey> repository) : base(repository)
+        {
         }
     }
 }

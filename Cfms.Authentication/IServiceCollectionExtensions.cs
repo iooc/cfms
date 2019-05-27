@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cfms.Authentication
 {
+    /// <summary>
+    /// IServiceCollection 接口扩展函数
+    /// </summary>
     public static class IServiceCollectionExtensions
     {
         public static IServiceCollection AddCfmsAuthentication(this IServiceCollection services)

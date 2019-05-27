@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Cfms.Authentication
 {
+    /// <summary>
+    /// IApplicationBuilder 接口扩展函数
+    /// </summary>
     public static class IApplicationBuilderExtensions
     {
         /// <summary>
