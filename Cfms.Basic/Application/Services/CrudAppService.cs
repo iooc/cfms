@@ -74,6 +74,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpGet]
         public virtual async Task<TEntityDto> Get(TGetInput input)
         {
             var entity = await Repository.Get(input.Id);
@@ -84,6 +85,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpGet]
         public virtual Task<IPagedResultDto<TEntityDto, TPrimaryKey>> GetAll(TGetAllInput input)
         {
             return Task.Run(() =>
