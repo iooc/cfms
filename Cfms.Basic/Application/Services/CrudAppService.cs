@@ -50,6 +50,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpPost]
         public virtual async Task<TEntityDto> Create(TCreateInput input)
         {
             var entity = MapToEntity(input);
@@ -64,6 +65,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+        [HttpDelete]
         public virtual Task Delete(TDeleteInput input)
         {
             Repository.Delete(input.Id);
@@ -74,7 +76,7 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("{id}")]
         public virtual async Task<TEntityDto> Get(TGetInput input)
         {
             var entity = await Repository.Get(input.Id);
@@ -110,7 +112,8 @@ namespace Cfms.Basic.Application.Services
         /// 修改查询
         /// </summary>
         /// <param name="input"></param>
-        /// <returns></returns>
+        /// <returns></returns
+        [HttpPut]
         public virtual async Task<TEntityDto> Update(TUpdateInput input)
         {
             var entity = await Repository.Get(input.Id);
