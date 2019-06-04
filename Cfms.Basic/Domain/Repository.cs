@@ -100,7 +100,7 @@ namespace Cfms.Basic.Domain
 
         public virtual IQueryable<TEntity> GetAll()
         {
-            var query = dbContext.Query<TEntity>();
+            var query = dbContext.Set<TEntity>().AsQueryable();
             return query;
         }
 
