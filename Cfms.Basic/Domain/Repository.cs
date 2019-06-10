@@ -1,5 +1,6 @@
 ﻿using Cfms.Basic.EntityFrameworkCore;
 using Cfms.Basic.Interfaces.Domain;
+using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,10 +22,15 @@ namespace Cfms.Basic.Domain
         where TPrimaryKey : struct
     {
         protected DbContext dbContext;
-        public RepositoryBase(DbContext _dbContext)
+        public RepositoryBase(DbContext _dbContext,IUnitOfWork uow)
         {
             dbContext = _dbContext;
+
+            CurrentUnitOfWork = uow;
         }
+
+        public IUnitOfWork CurrentUnitOfWork { get; set; }
+
         public virtual Task<int> Count(Expression<Func<TEntity, bool>> predicate)
         {
             //throw new NotImplementedException();

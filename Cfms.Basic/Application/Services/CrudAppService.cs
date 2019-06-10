@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Cfms.Basic.Application.Dto;
 using Cfms.Basic.Domain;
+using Cfms.Basic.Domain.Uow;
 using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Dto;
 using Cfms.Basic.Interfaces.Entity;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
@@ -36,6 +38,9 @@ namespace Cfms.Basic.Application.Services
         /// 数据仓储
         /// </summary>
         protected IRepository<TEntity, TPrimaryKey> Repository;
+        /// <summary>
+        /// 当前工作单元
+        /// </summary>
         protected IUnitOfWork CurrentUnitOfWork;
         /// <summary>
         /// 初始化增删改查应用服务
@@ -44,6 +49,8 @@ namespace Cfms.Basic.Application.Services
         public CrudAppService(IRepository<TEntity, TPrimaryKey> repository)
         {
             Repository = repository;
+
+            CurrentUnitOfWork = repository.CurrentUnitOfWork;
         }
         /// <summary>
         /// 新增查询

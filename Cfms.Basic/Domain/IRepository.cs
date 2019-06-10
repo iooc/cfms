@@ -1,4 +1,5 @@
 ﻿using Cfms.Basic.DependencyInjection;
+using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Entity;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,10 @@ namespace Cfms.Basic.Domain
         where TEntity : IEnity<TPrimaryKey> 
         where TPrimaryKey : struct
     {
+        /// <summary>
+        /// 工作单元
+        /// </summary>
+        IUnitOfWork CurrentUnitOfWork { get; set; }
         /// <summary>
         /// 按指定条件查询存储库中的所有实体的数目
         /// </summary>

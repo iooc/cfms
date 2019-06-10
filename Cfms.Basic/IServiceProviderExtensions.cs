@@ -20,7 +20,7 @@ namespace Cfms.Basic
             var type = provider.GetService(typeof(T));
             if (type is T result)
                 return result;
-            return default(T);
+            return default;
         }
     }
 }
