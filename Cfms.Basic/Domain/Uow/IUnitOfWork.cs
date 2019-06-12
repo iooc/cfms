@@ -1,5 +1,6 @@
 ﻿using Cfms.Basic.DependencyInjection;
 using Cfms.Basic.Domain.Uow;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace Cfms.Basic.Interfaces.Domain.Uow
@@ -10,6 +11,7 @@ namespace Cfms.Basic.Interfaces.Domain.Uow
     [Injectable(typeof(UnitOfWork))]
     public interface IUnitOfWork
     {
+        DbContext CurrentDbContext { set; }
         /// <summary>
         /// 提交数据更改
         /// </summary>

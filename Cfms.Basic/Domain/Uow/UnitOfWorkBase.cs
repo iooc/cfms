@@ -12,7 +12,8 @@ namespace Cfms.Basic.Domain.Uow
     /// </summary>
     public abstract class UnitOfWorkBase : IUnitOfWork
     {
-        protected DbContext CurrentDbContext;
+        public DbContext CurrentDbContext { internal get; set; }
+
         /// <summary>
         /// 提交此工作单元的数据更改
         /// </summary>

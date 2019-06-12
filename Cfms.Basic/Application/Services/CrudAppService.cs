@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
 using Cfms.Basic.Application.Dto;
 using Cfms.Basic.Domain;
-using Cfms.Basic.Domain.Uow;
 using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Dto;
 using Cfms.Basic.Interfaces.Entity;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;

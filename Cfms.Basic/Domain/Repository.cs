@@ -27,6 +27,7 @@ namespace Cfms.Basic.Domain
             dbContext = _dbContext;
 
             CurrentUnitOfWork = uow;
+            CurrentUnitOfWork.CurrentDbContext = _dbContext;
         }
 
         public IUnitOfWork CurrentUnitOfWork { get; set; }

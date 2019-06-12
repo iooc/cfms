@@ -1,6 +1,5 @@
 ﻿using Cfms.Basic.Application;
 using Cfms.Basic.Application.Services;
-using Cfms.Basic.Domain;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,7 +38,9 @@ namespace Cfms.Basic.DependencyInjection
                         var implementationType = inject.Implement;
                         // 接口声明最后
                         // 实现类其次
-                        if (inject.Implement.IsAssignableFrom(type))
+                        if (implementationType.IsAssignableFrom(serviceType)||
+                            Array.Exists(serviceType.GetInterfaces(),
+                            t => t.IsGenericType && t.GetGenericTypeDefinition() == implementationType))
                         {
                             serviceType = inject.Implement;
                             implementationType = type;
@@ -50,30 +51,12 @@ namespace Cfms.Basic.DependencyInjection
                         }
                         else
                         {
+                            // 需要多重依赖覆盖时，此似乎不是最优解决办法，
+                            // 只有第一个会生效，不能实现自由选取有效依赖
                             var descriptor = services.FirstOrDefault(desc => desc.ServiceType == serviceType);
                             if (descriptor != null)
                                 continue;
                         }
-                        //// 仓储依赖临时解决方案
-                        //if (implementationType == typeof(IRepository<,>))
-                        //{
-                        //    serviceType = inject.Implement;
-                        //    implementationType = type;
-
-                        //    //var desc = new ServiceDescriptor(serviceType,);
-                        //    //if (services.IndexOf(serviceType) != null)
-                        //    //{
-                        //    //    services.RemoveAll(serviceType);
-                        //    //}
-                        //}
-                        //else if (serviceType.Name == typeof(IRepository<,>).Name)
-                        //{
-                        //    //if (services.BuildServiceProvider().GetService(serviceType) != null)
-                        //    //{
-                        //        //services.RemoveAll(serviceType);
-                        //        continue;
-                        //    //}
-                        //}
                         // 配置模式优先
                         if (inject.Implement == null)
                         {
