@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
+using System.Linq;
 
 namespace Cfms.Basic.DependencyInjection
 {
@@ -43,36 +44,36 @@ namespace Cfms.Basic.DependencyInjection
                             serviceType = inject.Implement;
                             implementationType = type;
 
-                            //var desc = new ServiceDescriptor(serviceType);
-                            //if (services.Contains(desc))
-                            //    services.Remove(desc);
-                            //desc = new ServiceDescriptor(implementationType, serviceType, ServiceLifetime.Transient);
-                            //if (services.Contains(desc))
-                            //    services.Remove(desc);
-                            //desc = new ServiceDescriptor(implementationType, serviceType, ServiceLifetime.Singleton);
-                            //if (services.Contains(desc))
-                            //    services.Remove(desc);
+                            var descriptor = services.FirstOrDefault(desc => desc.ServiceType == serviceType);
+                            if (descriptor != null)
+                                services.RemoveAll(serviceType);
                         }
-                        // 仓储依赖临时解决方案
-                        if (implementationType == typeof(IRepository<,>))
+                        else
                         {
-                            serviceType = inject.Implement;
-                            implementationType = type;
-
-                            //var desc = new ServiceDescriptor(serviceType,);
-                            //if (services.IndexOf(serviceType) != null)
-                            //{
-                            //    services.RemoveAll(serviceType);
-                            //}
-                        }
-                        else if (serviceType.Name == typeof(IRepository<,>).Name)
-                        {
-                            //if (services.BuildServiceProvider().GetService(serviceType) != null)
-                            //{
-                                //services.RemoveAll(serviceType);
+                            var descriptor = services.FirstOrDefault(desc => desc.ServiceType == serviceType);
+                            if (descriptor != null)
                                 continue;
-                            //}
                         }
+                        //// 仓储依赖临时解决方案
+                        //if (implementationType == typeof(IRepository<,>))
+                        //{
+                        //    serviceType = inject.Implement;
+                        //    implementationType = type;
+
+                        //    //var desc = new ServiceDescriptor(serviceType,);
+                        //    //if (services.IndexOf(serviceType) != null)
+                        //    //{
+                        //    //    services.RemoveAll(serviceType);
+                        //    //}
+                        //}
+                        //else if (serviceType.Name == typeof(IRepository<,>).Name)
+                        //{
+                        //    //if (services.BuildServiceProvider().GetService(serviceType) != null)
+                        //    //{
+                        //        //services.RemoveAll(serviceType);
+                        //        continue;
+                        //    //}
+                        //}
                         // 配置模式优先
                         if (inject.Implement == null)
                         {
