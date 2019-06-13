@@ -12,6 +12,6 @@ namespace Cfms.Basic.Interfaces.Dto
         /// <summary>
         /// 限制显示条数
         /// </summary>
-        int Limit { get; set; }
+        int? Limit { get; set; }
     }
 }

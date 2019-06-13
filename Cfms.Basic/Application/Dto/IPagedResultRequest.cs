@@ -9,6 +9,6 @@ namespace Cfms.Basic.Interfaces.Dto
     /// </summary>
     public interface IPagedResultRequest : ILimitedResultRequest
     {
-        int Start { get; set; }
+        int? Start { get; set; }
     }
 }

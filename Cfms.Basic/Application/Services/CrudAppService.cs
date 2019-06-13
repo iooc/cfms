@@ -164,17 +164,15 @@ namespace Cfms.Basic.Application.Services
         protected virtual IQueryable<TEntity> ApplyPaging(IQueryable<TEntity> query, TGetAllInput input)
         {
             //Try to use paging if available
-            var pagedInput = input as IPagedResultRequest;
-            if (pagedInput != null)
+            if (input is IPagedResultRequest pagedInput && input.Start.HasValue)
             {
-                return query.Skip(pagedInput.Start).Take(pagedInput.Limit);
+                return query.Skip(pagedInput.Start.Value).Take(pagedInput.Limit.Value);
             }
 
             //Try to limit query result if available
-            ILimitedResultRequest limitedInput = input as ILimitedResultRequest;
-            if (limitedInput != null)
+            if (input is ILimitedResultRequest limitedInput && input.Limit.HasValue)
             {
-                return query.Take(limitedInput.Limit);
+                return query.Take(limitedInput.Limit.Value);
             }
 
             //No paging
