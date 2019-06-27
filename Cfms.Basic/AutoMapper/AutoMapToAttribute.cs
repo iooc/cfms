@@ -11,7 +11,7 @@ namespace Cfms.Basic.AutoMapper
     public class AutoMapToAttribute : AutoMapAttributeBase
     {
         public MemberList MemberList { get; set; } = MemberList.Source;
-        protected AutoMapToAttribute(Type targetTypes) 
+        public AutoMapToAttribute(Type targetTypes) 
             : base(targetTypes)
         {
         }

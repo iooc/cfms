@@ -56,7 +56,7 @@ namespace Cfms.Basic.Application.Services
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost]
-        public virtual async Task<TEntityDto> Create(TCreateInput input)
+        public virtual async Task<TEntityDto> Create([FromBody]TCreateInput input)
         {
             var entity = MapToEntity(input);
 
@@ -215,7 +215,7 @@ namespace Cfms.Basic.Application.Services
     /// <typeparam name="TGetAllInput"></typeparam>
     /// <typeparam name="TInputDto"></typeparam>
     public abstract class CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TInputDto>
-        : CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TGetAllInput, TInputDto, TInputDto, TInputDto>
+        : CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TInputDto, TInputDto, TInputDto, TInputDto>
         where TEntity : IEnity<TPrimaryKey>
         where TEntityDto : IEntityDto<TPrimaryKey>
         where TPrimaryKey : struct
