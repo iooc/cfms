@@ -215,11 +215,11 @@ namespace Cfms.Basic.Application.Services
     /// <typeparam name="TGetAllInput"></typeparam>
     /// <typeparam name="TInputDto"></typeparam>
     public abstract class CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TInputDto>
-        : CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TInputDto, TInputDto, TInputDto, TInputDto>
+        : CrudAppService<TEntity, TEntityDto, TPrimaryKey, TGetAllInput, TInputDto, TEntityDto, TEntityDto, TEntityDto>
         where TEntity : IEnity<TPrimaryKey>
         where TEntityDto : IEntityDto<TPrimaryKey>
         where TPrimaryKey : struct
-        where TInputDto : IEntityDto<TPrimaryKey>
+        where TInputDto : IEntityDto<TPrimaryKey?>
         where TGetAllInput : IPagedResultRequest
     {
         public CrudAppService(IRepository<TEntity, TPrimaryKey> repository) : base(repository)
