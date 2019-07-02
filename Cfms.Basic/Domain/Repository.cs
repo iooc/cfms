@@ -35,7 +35,7 @@ namespace Cfms.Basic.Domain
         public virtual Task<int> Count(Expression<Func<TEntity, bool>> predicate)
         {
             //throw new NotImplementedException();
-            var result = new Task<int>(() =>
+            var result = Task.Run(() =>
             {
                 var query = GetAll();
                 var count = query.Count(predicate);
@@ -47,7 +47,7 @@ namespace Cfms.Basic.Domain
 
         public virtual Task<int> Count()
         {
-            var result = new Task<int>(() =>
+            var result = Task.Run(() =>
             {
                 var query = GetAll();
                 var count = query.Count();
@@ -66,7 +66,7 @@ namespace Cfms.Basic.Domain
         public virtual Task Delete(Expression<Func<TEntity, bool>> predicate)
         {
             //throw new NotImplementedException();
-            return new Task(() =>
+            return Task.Run(() =>
             {
                 var query = GetAll();
                 var dbs = query.Where(predicate);
@@ -89,7 +89,7 @@ namespace Cfms.Basic.Domain
 
         public virtual Task<TEntity> FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
-            return new Task<TEntity>(() =>
+            return Task.Run(() =>
             {
                 return GetAll().FirstOrDefault(predicate);
             });
@@ -118,8 +118,7 @@ namespace Cfms.Basic.Domain
 
         public virtual Task<TEntity> Insert(TEntity entity)
         {
-            return new Task<TEntity>(() =>
-            {
+            return Task.Run(() => {
                 dbContext.Add(entity);
                 var result = dbContext.SaveChanges();
                 if (result >= 1)
@@ -131,19 +130,19 @@ namespace Cfms.Basic.Domain
 
         public virtual Task<TPrimaryKey> InsertAndGetId(TEntity entity)
         {
-            return new Task<TPrimaryKey>(() =>
+            return Task.Run(() =>
             {
                 var db = Insert(entity).Result;
                 if (db != null)
                     return db.Id;
                 else
-                    return default(TPrimaryKey);
+                    return default;
             });
         }
 
         public virtual Task<TEntity> Single(Expression<Func<TEntity, bool>> predicate)
         {
-            return new Task<TEntity>(() =>
+            return Task.Run(() =>
             {
                 var query = GetAll().SingleOrDefault(predicate);
                 return query;
@@ -159,7 +158,7 @@ namespace Cfms.Basic.Domain
 
         public virtual Task<TEntity> Update(TEntity entity)
         {
-            return new Task<TEntity>(() =>
+            return Task.Run(() =>
             {
                 dbContext.Update(entity);
                 return entity;

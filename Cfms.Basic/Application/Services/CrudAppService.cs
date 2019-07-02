@@ -58,6 +58,7 @@ namespace Cfms.Basic.Application.Services
         [HttpPost]
         public virtual async Task<TEntityDto> Create([FromBody]TCreateInput input)
         {
+            System.Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(input));
             var entity = MapToEntity(input);
 
             await Repository.Insert(entity);
