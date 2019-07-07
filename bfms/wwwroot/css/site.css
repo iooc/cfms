@@ -1,10 +1,10 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: SimSun, Arial, sans-serif;
 }
 
-app {
+/* app {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -49,13 +49,13 @@ app {
     padding-bottom: 0.5rem;
 }
 
-    .nav-item:first-of-type {
+     .nav-item:first-of-type {
         padding-top: 1rem;
     }
 
     .nav-item:last-of-type {
         padding-bottom: 1rem;
-    }
+    } 
 
     .nav-item a {
         color: #d7d7d7;
@@ -100,7 +100,7 @@ app {
     .main .top-row {
         display: none;
     }
-}
+} */
 
 @media (min-width: 768px) {
     app {
@@ -120,16 +120,17 @@ app {
     }
 
     .main > div {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
+        /* padding-left: 2rem !important;
+        padding-right: 1.5rem !important; */
+        margin-top: 56px;
     }
 
-    .navbar-toggler {
+    /* .navbar-toggler {
         display: none;
-    }
+    } */
 
     .sidebar .collapse {
-        /* Never collapse the sidebar for wide screens */
+        /* Never collapse the sidebar for wide screens*/
         display: block;
     }
-}
+} 

@@ -1,61 +1,40 @@
 @inherits LayoutComponentBase
 
-<header class="mdc-top-app-bar mdc-top-app-bar--fixed mdc-top-app-bar--dense app-bar" id="app-bar">
-  <div class="mdc-top-app-bar__row">
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <button class="material-icons mdc-top-app-bar__navigation-icon">menu</button>
-      <span class="mdc-top-app-bar__title">纸面办公</span>
-    </section>
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-      <!--<a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="系统管理">file_download</a>
-  <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="流程管理">print</a>
-  <a href="#" class="material-icons mdc-top-app-bar__action-item" aria-label="表单管理">bookmark</a>-->
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">file_download</i>
-        <span class="mdc-button__label">通知管理</span>
-      </button>
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">file_download</i>
-        <span class="mdc-button__label">邮件系统</span>
-      </button>
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">file_download</i>
-        <span class="mdc-button__label">个人中心</span>
-      </button>
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">file_download</i>
-        <span class="mdc-button__label">客户关系</span>
-      </button>
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">file_download</i>
-        <span class="mdc-button__label">财务管理</span>
-      </button>
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">file_download</i>
-        <span class="mdc-button__label">表单管理</span>
-      </button>
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">print</i>
-        <span class="mdc-button__label">流程管理</span>
-      </button>
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
-        <span class="mdc-button__label">控制面板</span>
-      </button>
-      <button class="mdc-button mdc-button--unelevated">
-        <i class="material-icons mdc-button__icon" aria-hidden="true">favorite</i>
-        <span class="mdc-button__label">退出</span>
-      </button>
-    </section>
+<nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">纸面办公</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">通知管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">邮件系统</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">个人中心</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">客户关系</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">财务管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">表单管理</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">流程管理</a>
+      </li>
+    </ul>
   </div>
-</header>
+</nav>
 
 <div class="main">
-    <div class="top-row px-4">
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
-    </div>
-
-    <div class="content px-4">
+    
+<div>
         @Body
-    </div>
+        </div>
 </div>
