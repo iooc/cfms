@@ -1,10 +1,11 @@
-﻿using Cfms.Basic.Interfaces.Entity;
+﻿using Cfms.Basic.Entity;
+using Cfms.Basic.Interfaces.Entity;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cfms.Authentication.Core
 {
-    public class OrganizationUnit : IEnity<Guid>, IMayTenant
+    public class OrganizationUnit : IEnity<Guid>, IMayTenant, ISoftDelete
     {
         [Key]
         public Guid Id { get; set; }
@@ -20,5 +21,9 @@ namespace Cfms.Authentication.Core
         /// 上级部门
         /// </summary>
         public Guid? ParentId { get; set; }
+        /// <summary>
+        /// 软删除
+        /// </summary>
+        public bool IsDeleted { get; set; }
     }
 }

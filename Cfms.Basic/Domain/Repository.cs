@@ -1,4 +1,5 @@
-﻿using Cfms.Basic.EntityFrameworkCore;
+﻿using Cfms.Basic.Entity;
+using Cfms.Basic.EntityFrameworkCore;
 using Cfms.Basic.Interfaces.Domain;
 using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Entity;
@@ -72,7 +73,10 @@ namespace Cfms.Basic.Domain
                 var dbs = query.Where(predicate);
                 foreach (var db in dbs)
                 {
-                    dbContext.Remove(db);
+                    if (db is ISoftDelete dt)
+                        dt.IsDeleted = true;
+                    else
+                        dbContext.Remove(db);
                 }
                 //dbContext.SaveChanges();
             });
@@ -82,7 +86,10 @@ namespace Cfms.Basic.Domain
         {
             return new Task(() =>
             {
-                dbContext.Remove(entity);
+                if (entity is ISoftDelete dt)
+                    dt.IsDeleted = true;
+                else
+                    dbContext.Remove(entity);
                 //dbContext.SaveChanges();
             });
         }

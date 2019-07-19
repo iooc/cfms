@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Cfms.Basic.Entity;
+using System;
 
 namespace Cfms.Basic.Interfaces.Entity
 {
@@ -8,7 +7,7 @@ namespace Cfms.Basic.Interfaces.Entity
     /// 删除审计实体模型的声明
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IDeletionEntity<T> : IEnity<T>
+    public interface IDeletionEntity<T> : IEnity<T>, ISoftDelete
         where T: struct
     {
         /// <summary>
