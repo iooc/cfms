@@ -11,6 +11,6 @@ namespace Cfms.IndentityServer.EntityFramworkCore
         /// <summary>
         /// 租户可包含自定义角色信息
         /// </summary>
-        public int? TenantId { get; set; }
+        public Guid? TenantId { get; set; }
     }
 }

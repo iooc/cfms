@@ -1,14 +1,10 @@
 ﻿using Cfms.Basic.Entity;
-using Cfms.Basic.EntityFrameworkCore;
-using Cfms.Basic.Interfaces.Domain;
 using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Cfms.Basic.Domain
@@ -30,9 +26,15 @@ namespace Cfms.Basic.Domain
             CurrentUnitOfWork = uow;
             CurrentUnitOfWork.CurrentDbContext = _dbContext;
         }
-
+        /// <summary>
+        /// 当前工作单元
+        /// </summary>
         public IUnitOfWork CurrentUnitOfWork { get; set; }
-
+        /// <summary>
+        /// 计算给定表达式条件的实体数
+        /// </summary>
+        /// <param name="predicate">条件表达式委托</param>
+        /// <returns></returns>
         public virtual Task<int> Count(Expression<Func<TEntity, bool>> predicate)
         {
             //throw new NotImplementedException();
@@ -45,7 +47,10 @@ namespace Cfms.Basic.Domain
 
             return result;
         }
-
+        /// <summary>
+        /// 计算实体总数
+        /// </summary>
+        /// <returns></returns>
         public virtual Task<int> Count()
         {
             var result = Task.Run(() =>
@@ -57,13 +62,21 @@ namespace Cfms.Basic.Domain
 
             return result;
         }
-
+        /// <summary>
+        /// 删除给定 ID 值的实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public virtual Task Delete(TPrimaryKey id)
         {
             //throw new NotImplementedException();
             return Delete(a => a.Id.Equals(id));
         }
-
+        /// <summary>
+        /// 删除符合给定条件表达式的实体数
+        /// </summary>
+        /// <param name="predicate">条件表达式委托</param>
+        /// <returns></returns>
         public virtual Task Delete(Expression<Func<TEntity, bool>> predicate)
         {
             //throw new NotImplementedException();
@@ -115,6 +128,8 @@ namespace Cfms.Basic.Domain
         public virtual IQueryable<TEntity> GetAll()
         {
             var query = dbContext.Set<TEntity>().AsQueryable();
+            if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))
+                query = query.Where(a => (a as ISoftDelete).IsDeleted != true);
             return query;
         }
 

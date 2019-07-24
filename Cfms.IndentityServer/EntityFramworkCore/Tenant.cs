@@ -17,5 +17,6 @@ namespace Cfms.IndentityServer.EntityFramworkCore
         public DateTime CreateTime { get; set; }
         public int DeleteUserId { get; set; }
         public DateTime DeleteTime { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
