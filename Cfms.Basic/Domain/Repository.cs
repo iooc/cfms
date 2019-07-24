@@ -1,5 +1,4 @@
-﻿using Cfms.Basic.Entity;
-using Cfms.Basic.Interfaces.Domain.Uow;
+﻿using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -86,10 +85,7 @@ namespace Cfms.Basic.Domain
                 var dbs = query.Where(predicate);
                 foreach (var db in dbs)
                 {
-                    if (db is ISoftDelete dt)
-                        dt.IsDeleted = true;
-                    else
-                        dbContext.Remove(db);
+                    dbContext.Remove(db);
                 }
                 //dbContext.SaveChanges();
             });
@@ -99,10 +95,7 @@ namespace Cfms.Basic.Domain
         {
             return new Task(() =>
             {
-                if (entity is ISoftDelete dt)
-                    dt.IsDeleted = true;
-                else
-                    dbContext.Remove(entity);
+                dbContext.Remove(entity);
                 //dbContext.SaveChanges();
             });
         }
@@ -128,8 +121,6 @@ namespace Cfms.Basic.Domain
         public virtual IQueryable<TEntity> GetAll()
         {
             var query = dbContext.Set<TEntity>().AsQueryable();
-            if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))
-                query = query.Where(a => (a as ISoftDelete).IsDeleted != true);
             return query;
         }
 
