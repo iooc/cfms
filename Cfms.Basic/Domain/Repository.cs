@@ -1,4 +1,5 @@
-﻿using Cfms.Basic.Interfaces.Domain.Uow;
+﻿using Cfms.Basic.Entity;
+using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -85,7 +86,10 @@ namespace Cfms.Basic.Domain
                 var dbs = query.Where(predicate);
                 foreach (var db in dbs)
                 {
-                    dbContext.Remove(db);
+                    if (db is ISoftDelete dt)
+                        dt.IsDeleted = true;
+                    else
+                        dbContext.Remove(db);
                 }
                 //dbContext.SaveChanges();
             });
@@ -93,9 +97,12 @@ namespace Cfms.Basic.Domain
 
         public virtual Task Delete(TEntity entity)
         {
-            return new Task(() =>
+            return Task.Run(() =>
             {
-                dbContext.Remove(entity);
+                if (entity is ISoftDelete dt)
+                    dt.IsDeleted = true;
+                else
+                    dbContext.Remove(entity);
                 //dbContext.SaveChanges();
             });
         }
@@ -121,7 +128,7 @@ namespace Cfms.Basic.Domain
         public virtual IQueryable<TEntity> GetAll()
         {
             var query = dbContext.Set<TEntity>().AsQueryable();
-            return query;
+            return ApplyDataFilters(query);
         }
 
         public virtual IQueryable<TEntity> GetAllIncluding(params Expression<Func<TEntity, object>>[] propertySelectors)
@@ -176,6 +183,28 @@ namespace Cfms.Basic.Domain
                 dbContext.Update(entity);
                 return entity;
             });
+        }
+        /// <summary>
+        /// 可重写的数据筛选器
+        /// </summary>
+        /// <typeparam name="TQueryable">可查询对象的类型</typeparam>
+        /// <param name="query">可查询对象</param>
+        /// <returns></returns>
+        protected virtual TQueryable ApplyDataFilters<TQueryable>(TQueryable query)
+           where TQueryable : IQueryable<TEntity>
+        {
+            if (typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity)))
+            {
+                query = (TQueryable)query.Where(e => ((ISoftDelete)e).IsDeleted == false);
+            }
+
+            //if (typeof(IMayTenant).IsAssignableFrom(typeof(TEntity)))
+            //{
+            //    var tenantId = CurrentTenant.Id;
+            //    query = (TQueryable)query.Where(e => ((IMayTenant)e).TenantId == tenantId);
+            //}
+
+            return query;
         }
     }
 }
