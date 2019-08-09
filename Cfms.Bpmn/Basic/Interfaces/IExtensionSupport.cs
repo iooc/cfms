@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cfms.BPMN.Connectings;
+using System.Collections.Generic;
 using System.Reactive.Subjects;
 
 namespace Cfms.BPMN.Basic.Interfaces

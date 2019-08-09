@@ -1,39 +1,26 @@
 ﻿using Cfms.BPMN.Basic;
 using Cfms.BPMN.Basic.Interfaces;
 using Cfms.BPMN.Connectings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Subjects;
+using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Cfms.BPMN.Flows
+namespace Cfms.BPMN.Flows.Events
 {
     /// <summary>
-    /// 中间流对象的基类
+    /// 开始事件
     /// </summary>
-    public abstract class IntermediateFlow : FlowNode, IIntermediateFlow
+    public class StartEvent : CatchEvent
     {
-        /// <summary>
-        /// 输入流连线对象引用的集合
-        /// </summary>
-        public List<SequenceFlow> Incoming { get; set; }
-        /// <summary>
-        /// 输出流连线对象引用的集合
-        /// </summary>
-        public List<SequenceFlow> Outgoing { get; set; }
-
         public override Task AppendLoad(XElement item, Process target)
         {
             return Task.Run(() =>
             {
-                // 中间流对象拥有前后连接
-                var ins = item.Elements("incoming");
-                foreach (var @in in ins)
-                {
-                    if (Incoming == null)
-                        Incoming = new List<SequenceFlow>();
-                    Incoming.Add(target.Where(a => a.Id == @in.Value).FirstOrDefault() as SequenceFlow);
-                }
+                // 开始事件拥有后连接
                 var outs = item.Elements("outgoing");
                 foreach (var @out in outs)
                 {
