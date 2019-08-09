@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cfms.IndentityServer", "Cfm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cfms.AI", "Cfms.AI\Cfms.AI.csproj", "{4151882F-1684-4795-8EA9-FE2BCE29E5DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cfms.Bpmn", "Cfms.Bpmn\Cfms.Bpmn.csproj", "{A0B3B00E-E0AC-4749-B599-B7808D89B978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cfms.BPMN", "Cfms.Bpmn\Cfms.BPMN.csproj", "{A0B3B00E-E0AC-4749-B599-B7808D89B978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

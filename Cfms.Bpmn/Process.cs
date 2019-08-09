@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Cfms.BPMN.Basic.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Reactive.Subjects;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Xml.Linq;
 
-namespace Cfms.Bpmn
+namespace Cfms.BPMN
 {
     /// <summary>
     /// 流程设计图中运行定义节点的基类

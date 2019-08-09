@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cfms.Bpmn
+namespace Cfms.BPMN
 {
     /// <summary>
     /// 一个完整流程图表结构

@@ -1,76 +1,18 @@
 ﻿using Cfms.Basic.Application.Services;
+using Cfms.BPMN.Basic;
+using Cfms.BPMN.Basic.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reactive.Subjects;
+using System.Reflection;
+using System.Xml.Linq;
 
-namespace Cfms.Bpmn
+namespace Cfms.BPMN
 {
     public class Executor: ApplicationService
-    {/// <summary>
-     /// 启动给定事件的流程
-     /// </summary>
-     /// <param name="graph">流程图</param>
-     /// <param name="startEvent">开始事件Id</param>
-        public static void Start(this Collaboration graph, string startEvent = null)
-        {
-            StartEvent @event;
-            if (string.IsNullOrWhiteSpace(startEvent))
-            {
-                foreach (var process in graph)
-                {
-                    foreach (var bpm in process)
-                    {
-                        if (bpm is StartEvent)
-                        {
-                            @event = bpm as StartEvent;
-                            goto GETEVENT;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                foreach (var process in graph)
-                {
-                    foreach (var bpm in process)
-                    {
-                        if (bpm.Id == startEvent)
-                        {
-                            @event = bpm as StartEvent;
-                            goto GETEVENT;
-                        }
-                    }
-                }
-            }
-            // 未查询到开始事件直接跳出
-            return;
-            GETEVENT:
-            foreach (var outgoing in @event.Outgoing)
-            {
-                var tagetNode = outgoing.TargetRef;
-                Send(tagetNode);
-            }
-        }
-        /// <summary>
-        /// 发送一个当前未在内存中的流程到指定任务
-        /// </summary>
-        /// <param name="graph">已初始化到内存的图表</param>
-        /// <param name="task">任务标识</param>
-        public static void Send(this Collaboration graph, string task)
-        {
-            Task taskInstance;
-            foreach (var process in graph)
-            {
-                foreach (var bpm in process)
-                {
-                    if (bpm.Id == task)
-                    {
-                        taskInstance = bpm as Task;
-
-                        Send(taskInstance);
-                        return;
-                    }
-                }
-            }
-        }
+    {
+        
         /// <summary>
         /// 将流程发送到下一步执行
         /// </summary>
@@ -228,9 +170,9 @@ namespace Cfms.Bpmn
         /// </summary>
         /// <param name="xml">一个完整文档结构的 xml 字符串</param>
         /// <returns></returns>
-        public async static System.Threading.Tasks.Task<ProcessGraph> Deserialize(string xml)
+        public async static System.Threading.Tasks.Task<Collaboration> Deserialize(string xml)
         {
-            var list = new ProcessGraph();
+            var list = new Collaboration();
 
             var doc = XDocument.Parse(xml.Replace("bpmn2:", "").Replace("bpmn:", ""));
             // 查询流程集合
