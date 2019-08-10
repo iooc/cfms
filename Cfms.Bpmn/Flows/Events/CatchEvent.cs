@@ -19,11 +19,11 @@ namespace Cfms.BPMN.Flows.Events
         /// <summary>
         /// 事件定义属性
         /// </summary>
-        public IStartEventDefinition EventDefinition { get; set; }
+        public IEventDefinition EventDefinition { get; set; }
         /// <summary>
         /// 是否允许流程发送到下一步
         /// </summary>
-        public bool IsAllowToSend
+        public virtual bool IsAllowToSend
         {
             get
             {

@@ -2,6 +2,10 @@
 using Cfms.BPMN.Basic;
 using Cfms.BPMN.Basic.Interfaces;
 using Cfms.BPMN.Flows.Activities;
+using Cfms.BPMN.Flows.Events;
+using Cfms.BPMN.Flows.Events.Definitions;
+using Cfms.BPMN.Flows.Gateways;
+using Cfms.BPMN.Swimlanes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
