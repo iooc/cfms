@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Cfms.BPMN.Flows.Events.Definitions;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Cfms.BPMN
 {

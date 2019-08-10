@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cfms.BPMN.Flows.Activities;
+using Cfms.BPMN.Flows.Events;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -51,7 +53,7 @@ namespace Cfms.BPMN.Extention
             foreach (var outgoing in @event.Outgoing)
             {
                 var tagetNode = outgoing.TargetRef;
-                Send(tagetNode);
+                Executor.Send(tagetNode);
             }
         }
         /// <summary>
@@ -70,7 +72,7 @@ namespace Cfms.BPMN.Extention
                     {
                         taskInstance = bpm as Task;
 
-                        Send(taskInstance);
+                        Executor.Send(taskInstance);
                         return;
                     }
                 }
