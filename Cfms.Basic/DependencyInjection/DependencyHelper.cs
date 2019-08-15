@@ -105,12 +105,13 @@ namespace Cfms.Basic.DependencyInjection
             // 控制器功能提供程序模式
             services.AddMvcCore(options =>
             {
-                // 使用领域服务路由约定
+                // 使用领域服务路由变换约定
                 var routeToken = new RouteTokenTransformerConvention(new AppServiceParameterTransformer());
                 options.Conventions.Add(routeToken);
             })
             .ConfigureApplicationPartManager(manager =>
             {
+                // 添加领域驱动服务功能提供程序到功能集中
                 var provider = new AppServiceControllerFeatureProvider();
                 manager.FeatureProviders.Add(provider);
             });

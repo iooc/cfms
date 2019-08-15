@@ -20,23 +20,24 @@ namespace Cfms.Basic.AutoMapper
         public static IServiceCollection AddCfmsAutoMapper(this IServiceCollection services)
         {
             var ass = AppDomain.CurrentDomain.GetAssemblies();
-            var cfg = new MapperConfigurationExpression();
-            foreach (var a in ass)
-            {
-                var types = a.GetTypes();
-                foreach (var type in types)
-                {
-                    if (type.IsDefined(typeof(AutoMapAttributeBase), true))
-                    {
-                        // 获取此特性类的实例
-                        var attri = type.GetCustomAttributes(typeof(AutoMapAttributeBase), true)[0]
-                            as AutoMapAttributeBase;
+            //var cfg = new MapperConfigurationExpression();
+            //foreach (var a in ass)
+            //{
+                //var types = a.GetTypes();
+                //foreach (var type in types)
+                //{
+                //    if (type.IsDefined(typeof(AutoMapAttributeBase), true))
+                //    {
+                //        // 获取此特性类的实例
+                //        var attri = type.GetCustomAttributes(typeof(AutoMapAttributeBase), true)[0]
+                //            as AutoMapAttributeBase;
 
-                        attri.CreateMap(cfg, type);
-                    }
-                }
-            }
-            Mapper.Initialize(cfg);
+                //        attri.CreateMap(cfg, type);
+                //    }
+                //}
+            //}
+            //Mapper.Initialize(cfg);
+            services.AddAutoMapper(ass);
 
             return services;
         }

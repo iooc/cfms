@@ -11,6 +11,11 @@ namespace Cfms.Basic.Application
     /// </summary>
     public class AppServiceParameterTransformer : IOutboundParameterTransformer
     {
+        /// <summary>
+        /// 出站变换
+        /// </summary>
+        /// <param name="value">内部实际路由地址</param>
+        /// <returns></returns>
         public string TransformOutbound(object value)
         {
             if (value == null) { return null; }

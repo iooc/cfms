@@ -41,6 +41,10 @@ namespace Cfms.Basic.Application.Services
         /// </summary>
         protected IUnitOfWork CurrentUnitOfWork;
         /// <summary>
+        /// 自动映射注入对象的引用
+        /// </summary>
+        protected IMapper Mapper;
+        /// <summary>
         /// 初始化增删改查应用服务
         /// </summary>
         /// <param name="repository"></param>
@@ -49,6 +53,8 @@ namespace Cfms.Basic.Application.Services
             Repository = repository;
 
             CurrentUnitOfWork = repository.CurrentUnitOfWork;
+
+            Mapper = repository.Mapper;
         }
         /// <summary>
         /// 新增查询
@@ -223,7 +229,8 @@ namespace Cfms.Basic.Application.Services
         where TInputDto : IEntityDto<TPrimaryKey?>
         where TGetAllInput : IPagedResultRequest
     {
-        public CrudAppService(IRepository<TEntity, TPrimaryKey> repository) : base(repository)
+        public CrudAppService(IRepository<TEntity, TPrimaryKey> repository) 
+            : base(repository)
         {
         }
     }

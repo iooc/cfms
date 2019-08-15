@@ -1,4 +1,5 @@
-﻿using Cfms.Basic.Entity;
+﻿using AutoMapper;
+using Cfms.Basic.Entity;
 using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Entity;
 using Microsoft.EntityFrameworkCore;
@@ -19,17 +20,23 @@ namespace Cfms.Basic.Domain
         where TPrimaryKey : struct
     {
         protected DbContext dbContext;
-        public RepositoryBase(DbContext _dbContext,IUnitOfWork uow)
+        public RepositoryBase(DbContext _dbContext,IUnitOfWork uow,IMapper mapper)
         {
             dbContext = _dbContext;
 
             CurrentUnitOfWork = uow;
             CurrentUnitOfWork.CurrentDbContext = _dbContext;
+
+            Mapper = mapper;
         }
         /// <summary>
         /// 当前工作单元
         /// </summary>
         public IUnitOfWork CurrentUnitOfWork { get; set; }
+        /// <summary>
+        /// 自动映射注入对象的引用
+        /// </summary>
+        public IMapper Mapper { get; private set; }
         /// <summary>
         /// 计算给定表达式条件的实体数
         /// </summary>

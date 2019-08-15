@@ -1,17 +1,17 @@
-﻿using AutoMapper;
-using System;
+﻿//using AutoMapper;
+//using System;
 
-namespace Cfms.Basic.AutoMapper
-{
-    public abstract class AutoMapAttributeBase : Attribute
-    {
-        public Type TargetType { get; private set; }
+//namespace Cfms.Basic.AutoMapper
+//{
+//    public abstract class AutoMapAttributeBase : Attribute
+//    {
+//        public Type TargetType { get; private set; }
 
-        protected AutoMapAttributeBase(Type targetTypes)
-        {
-            TargetType = targetTypes;
-        }
+//        protected AutoMapAttributeBase(Type targetTypes)
+//        {
+//            TargetType = targetTypes;
+//        }
 
-        public abstract void CreateMap(IMapperConfigurationExpression configuration, Type type);
-    }
-}
+//        public abstract void CreateMap(IMapperConfigurationExpression configuration, Type type);
+//    }
+//}

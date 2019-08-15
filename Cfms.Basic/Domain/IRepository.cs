@@ -1,4 +1,5 @@
-﻿using Cfms.Basic.DependencyInjection;
+﻿using AutoMapper;
+using Cfms.Basic.DependencyInjection;
 using Cfms.Basic.Interfaces.Domain.Uow;
 using Cfms.Basic.Interfaces.Entity;
 using System;
@@ -24,6 +25,10 @@ namespace Cfms.Basic.Domain
         /// 工作单元
         /// </summary>
         IUnitOfWork CurrentUnitOfWork { get; set; }
+        /// <summary>
+        /// 自动映射注入对象的引用
+        /// </summary>
+        IMapper Mapper { get; }
         /// <summary>
         /// 按指定条件查询存储库中的所有实体的数目
         /// </summary>

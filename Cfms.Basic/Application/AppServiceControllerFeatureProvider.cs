@@ -9,7 +9,7 @@ using System.Text;
 namespace Cfms.Basic.Application
 {
     /// <summary>
-    /// 领域驱动服务功能集提供程序
+    /// 领域驱动服务控制器功能提供程序
     /// </summary>
     /// <remarks>
     /// 通过向 AspNetCore 添加功能集的方式实现领域驱动服务
