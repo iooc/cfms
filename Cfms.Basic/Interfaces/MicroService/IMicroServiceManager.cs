@@ -9,5 +9,9 @@ namespace Cfms.Basic.Interfaces.MicroService
     /// </summary>
     interface IMicroServiceManager
     {
+        /// <summary>
+        /// 分布式服务订阅网关服务并注册
+        /// </summary>
+        void Subscribe();
     }
 }
