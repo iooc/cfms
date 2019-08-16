@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Ocelot.DependencyInjection;
 using System;
 using System.Linq;
 
@@ -105,7 +106,7 @@ namespace Cfms.Basic.DependencyInjection
             // 控制器功能提供程序模式
             services.AddMvcCore(options =>
             {
-                // 使用领域服务路由变换约定
+                // 添加领域服务路由变换约定
                 var routeToken = new RouteTokenTransformerConvention(new AppServiceParameterTransformer());
                 options.Conventions.Add(routeToken);
             })
@@ -115,6 +116,8 @@ namespace Cfms.Basic.DependencyInjection
                 var provider = new AppServiceControllerFeatureProvider();
                 manager.FeatureProviders.Add(provider);
             });
+            // 微服务网关(config 中还需调用 UseOcelot().Wait())
+            services.AddOcelot();
 
             return services;
         }
