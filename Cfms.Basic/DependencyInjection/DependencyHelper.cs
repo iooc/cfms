@@ -117,7 +117,7 @@ namespace Cfms.Basic.DependencyInjection
                 manager.FeatureProviders.Add(provider);
             });
             // 微服务网关(config 中还需调用 UseOcelot().Wait())
-            services.AddOcelot();
+            //services.AddOcelot();
 
             return services;
         }
