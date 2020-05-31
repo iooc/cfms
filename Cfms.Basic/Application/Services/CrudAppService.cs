@@ -64,7 +64,8 @@ namespace Cfms.Basic.Application.Services
         [HttpPost]
         public virtual async Task<TEntityDto> Create([FromBody]TCreateInput input)
         {
-            System.Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(input));
+            System.Console.WriteLine("新增数据："+Newtonsoft.Json.JsonConvert.SerializeObject(input));
+
             var entity = MapToEntity(input);
 
             await Repository.Insert(entity);
@@ -80,6 +81,8 @@ namespace Cfms.Basic.Application.Services
         [HttpDelete]
         public virtual Task Delete(TDeleteInput input)
         {
+            System.Console.WriteLine("删除数据：" + Newtonsoft.Json.JsonConvert.SerializeObject(input));
+
             Repository.Delete(input.Id);
             return CurrentUnitOfWork.SaveChanges();
         }
@@ -128,6 +131,8 @@ namespace Cfms.Basic.Application.Services
         [HttpPut]
         public virtual async Task<TEntityDto> Update(TUpdateInput input)
         {
+            System.Console.WriteLine("修改数据：" + Newtonsoft.Json.JsonConvert.SerializeObject(input));
+
             var entity = await Repository.Get(input.Id);
 
             MapToEntity(input, entity);
