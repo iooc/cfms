@@ -79,12 +79,13 @@ namespace Cfms.Basic.Application.Services
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpDelete]
-        public virtual Task Delete(TDeleteInput input)
+        public virtual async Task Delete(TDeleteInput input)
         {
             System.Console.WriteLine("删除数据：" + Newtonsoft.Json.JsonConvert.SerializeObject(input));
 
-            Repository.Delete(input.Id);
-            return CurrentUnitOfWork.SaveChanges();
+            await Repository.Delete(input.Id);
+            await CurrentUnitOfWork.SaveChanges();
+            //return CurrentUnitOfWork.SaveChanges();
         }
         /// <summary>
         /// 单条记录查询

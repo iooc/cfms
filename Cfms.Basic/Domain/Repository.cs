@@ -77,6 +77,7 @@ namespace Cfms.Basic.Domain
         public virtual Task Delete(TPrimaryKey id)
         {
             //throw new NotImplementedException();
+            Console.WriteLine("来了么1");
             return Delete(a => a.Id.Equals(id));
         }
         /// <summary>
@@ -91,10 +92,14 @@ namespace Cfms.Basic.Domain
             {
                 var query = GetAll();
                 var dbs = query.Where(predicate);
+                Console.WriteLine("来了么2");
                 foreach (var db in dbs)
                 {
                     if (db is ISoftDelete dt)
+                    {
                         dt.IsDeleted = true;
+                        //dbContext.Update(db);
+                    }
                     else
                         dbContext.Remove(db);
                 }
@@ -107,7 +112,10 @@ namespace Cfms.Basic.Domain
             return Task.Run(() =>
             {
                 if (entity is ISoftDelete dt)
+                {
                     dt.IsDeleted = true;
+                    //dbContext.Update(entity);
+                }
                 else
                     dbContext.Remove(entity);
                 //dbContext.SaveChanges();
